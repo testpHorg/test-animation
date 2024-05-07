@@ -2421,10 +2421,15 @@ function set_image_href_dataURL(img, src) {
     // if it's already cached, just set it
     if (_IMAGE_DATAURL_CACHE_MAP.has(src)) {
         const dataURL = _IMAGE_DATAURL_CACHE_MAP.get(src);
+        if (!dataURL)
+            return;
+        // dataURL can be undefined, indicating it's still loading or
+        // the image is not found
         img.setAttribute("href", dataURL);
         img.setAttribute("xlink:href", dataURL);
         return;
     }
+    _IMAGE_DATAURL_CACHE_MAP.set(src, undefined);
     let canvas = document.createElement("canvas");
     let ctx = canvas.getContext('2d');
     let base_image = new Image();
