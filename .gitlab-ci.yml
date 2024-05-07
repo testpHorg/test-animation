@@ -3,7 +3,9 @@ image: node:lts
 pages:
   script:
     - mkdir public
-    - cp * ./public/
+    - cp *.png ./public/
+    - cp *.js ./public/
+    - cp *.html ./public/
   artifacts:
     paths:
       # The folder that contains the files to be exposed at the Page URL
